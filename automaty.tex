@@ -1,0 +1,77 @@
+\documentclass{mwart}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\textbf{Językiem} nad alfabetem $V$ nazywamy dowolny podzbiór $L$ zbioru $V^{*}$, tj. $L \subset V^{*}$.\medskip
+
+\textbf{Domknięcie Kleene'ego} języka $L$, tj. $L^{*}$, to $L^{*} = \bigcup_{n \ge 0}L^{n}$.\par
+Inaczej mówiąc, $L^{*}$ to język zawierający wszystkie możliwe sklejenia dowolnej liczby (łącznie z 0) słów należacych do $L$.  Dla każdego języka $L$, $\epsilon \in L^{*}$, gdyż $\{\epsilon\} = L^{0} \subseteq L^{*}$.  Jeżeli tylko $L$ zawiera jakieś niepuste słowo, to $L^{*}$ jest zbiorem nieskończonym.  Np. $\{ab, aa\}^{*} = \{\epsilon, ab, aa, abab, ...\}$.\medskip
+
+\textbf{Pozytywne domknięcie Kleene'ego}: $L^{+} =\overset{\infty}{\bigcup}_{n \ge 1}L^{n}$ - język zawierający wszystkie możliwe sklejenia dowolnej liczby słów należących do $L$, $L^{+} = LL^{*}$.\medskip
+
+\textbf{Automatem deterministycznym skończenie stanowym} nazywamy piątkę $<K, T, \delta, q_{0}, H>$, gdzie
+\begin{itemize}
+\item $K \neq \varnothing$ - skończony zbiór stanów,
+\item $T \neq \varnothing$ - skończony alfabet taśm wejściowych,
+\item $\delta: K \times T \to T$ - funkcja przejścia,
+\item $q_{0}$ - stan poczatkowy; $q_{0} \in K$,
+\item $H$ - zbiór stanów akceptujących.
+\end{itemize}\medskip
+
+\textbf{Konkatenancją słów} $P$ i $Q \in V^{*}$ nazywamy słowo zdefiniowane następująco:
+\begin{enumerate}
+\item Jeśli $P \neq \epsilon \neq Q$, tzn. $P = a_{1}, a_{2}, ..., a_{n}$ i $Q = b_{1}, b_{2}, ..., b_{m}$, gdzie $m, n \ge 1$ to $PQ = a_{1}...a_{n}b_{1}...b_{n}$.
+\item Jeśli $P = \epsilon$ (odpowiednio: $Q = \epsilon$), to $PQ = Q$ (odpowiednio: $PQ = Q$.
+\end{enumerate}\medskip
+
+\textbf{Konkatenacją języków} nazywamy język składający się ze słów obu języków. W szczególności:
+\begin{enumerate}
+\item $\varnothing L = \varnothing = L\varnothing$
+\item $L\{\epsilon\} = L$
+\item $L_{1} = \{a^{n}; n \ge 0\}, L_{2} = \{b^{m}; m \ge 0\} \Rightarrow L_{1}L_{2} = \{a^{n}b^{m}: n, m \ge 0 \}$
+\end{enumerate}\medskip
+
+\textbf{Reg(V)} - zbiór wyrażeń regularnych nad alfabetem $V$ zdefiniowany w następujący sposób:
+\begin{enumerate}[label={(\roman*)}]
+\item $o \in Reg(V)$
+\item $e \in Reg(V)$
+\item $\forall a \in V$, $a \in Reg(V)$
+\item Jeżeli $u$ i $v \in  Reg(V)$, to $(u+v), (uv), (v^{*}) \in Reg(V)$
+\end{enumerate}\medskip
+
+\textbf{L(V)} - język określany przez $L(V)$ to język zdefiniowany w następujący sposób:
+\begin{enumerate}[label={(\roman*)}]
+\item $L(o) = \varnothing$
+\item $L(e) = \{\epsilon\}$
+\item Dla dowolnego $a \in V$, $L(a) = \{a\}$
+\item Jeżeli $L_{1} = L(u)$, $L_{2} = L(v)$, to:
+\begin{itemize}
+\item $L(u+v) = L_{1} \cup L_{2}$: suma języków,
+\item $L(uv) = L_{1}L_{2}$: konketencja jezyków,
+\item $L(u^{*}) = (L_{1})^{*}$: domknięcie Kleene'ego języka
+\end{itemize}
+\end{enumerate}\medskip
+
+\textbf{N-ta potęga języka} jest oznaczana jako $L^{n}$ i definiowana indukcyjnie:
+\begin{enumerate}[label={(\roman*)}]
+\item $L^{0} = \{\epsilon\}$
+\item $L^{n+1} = L^{n}L$
+\end{enumerate}
+Np. $L^{3}$ dla $L = \{b, ab\}$:\par
+$L^{1} = \{b, ab\}$\par
+$L^{2} = \{b, ab\}\{b, ab\} = \{b^{2}, bab, ab^{2}, abab\}$\par
+$L^{3} = \{b^{2}, bab, ab^{2}, abab\} = \{b^{3}, b^{2}ab, bab^{2}, babab, ab^{3}, ab^{2}ab, abab^{2}, ababab\}$\medskip
+
+\textbf{Twierdzenie Scotta.} Dla każdego automatu niedeterministycznego $\alpha$ można skonstruować automat deterministyczny $\alpha'$ taki, że $L(\alpha) = L(\alpha')$ i na odwrót.\par
+Konstrukcja z twierdzenia Scotta. Mamy automat niedeterministyczny $\alpha = < K, T, S, Q_{0}, H >$. Konstruujemy automat deterministyczny $\alpha' = <K', T', \delta', q_{0}', H>$ w nastepujący sposób:\par
+$T ' = T$,\par
+$K' = P(K)$,\par
+$q_{0}' = Q_{0}$,\par
+$H' = \{q \in K: q \cap H \neq \varnothing \}$,\par
+$\delta'(q,a) = \underset{p \in q}{\bigcup\delta(p,a)}$
+
+\end{document}

@@ -8,7 +8,7 @@
 
 \textbf{Językiem} nad alfabetem $V$ nazywamy dowolny podzbiór $L$ zbioru $V^{*}$, tj. $L \subset V^{*}$.\medskip
 
-\textbf{Domknięcie Kleene'ego} języka $L$, tj. $L^{*}$, to $L^{*} = \bigcup_{n \ge 0}L^{n}$.\par
+\textbf{Domknięcie Kleene'ego} języka $L$, tj. $L^{*}$, to $L^{*} =\overset{\infty}{\bigcup}_{n \ge 0}L^{n}$.\par
 Inaczej mówiąc, $L^{*}$ to język zawierający wszystkie możliwe sklejenia dowolnej liczby (łącznie z 0) słów należacych do $L$.  Dla każdego języka $L$, $\epsilon \in L^{*}$, gdyż $\{\epsilon\} = L^{0} \subseteq L^{*}$.  Jeżeli tylko $L$ zawiera jakieś niepuste słowo, to $L^{*}$ jest zbiorem nieskończonym.  Np. $\{ab, aa\}^{*} = \{\epsilon, ab, aa, abab, ...\}$.\medskip
 
 \textbf{Pozytywne domknięcie Kleene'ego}: $L^{+} =\overset{\infty}{\bigcup}_{n \ge 1}L^{n}$ - język zawierający wszystkie możliwe sklejenia dowolnej liczby słów należących do $L$, $L^{+} = LL^{*}$.\medskip
